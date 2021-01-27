@@ -5,19 +5,12 @@ const result = statement(invoicesData, playsData)
 console.log(result)
 
 function statement(invoices, plays) {
-    let totalAmount = 0;
     let result = `청구 내역 ( 고객명 : ${invoices.customer}) \n`
-    
-    for (let perf of invoices.performances) {
-        // 청구 내역을 출력한다
-        result +=  `${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} 석) \n`;
-        totalAmount += amountFor(perf);
-    }
 
     // 값 누적 로직을 별도 for문으로 분리
     // for 문을 두번이나 돌리는데 좋은건가?
     
-    result += `총액 : ${usd(totalAmount)} \n`
+    result += `총액 : ${usd(totalAmount())} \n`
     result += `적립 포인트 : ${totalVolumeCredits()} 점 \n`
     return result;
 
@@ -60,11 +53,21 @@ function statement(invoices, plays) {
     }
 
     function totalVolumeCredits() {
-        let volumeCredits = 0;
+        let result = 0;
         for (let perf of invoices.performances) {
-            volumeCredits += volumeCreditsFor(perf) 
+            result += volumeCreditsFor(perf) 
         }
-        return volumeCredits;
+        return result;
+    }
+
+    function totalAmount() {
+        let result = 0;
+        for (let perf of invoices.performances) {
+            // 청구 내역을 출력한다
+            result +=  `${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} 석) \n`;
+            result += amountFor(perf);
+        }
+        return result
     }
 }
 
