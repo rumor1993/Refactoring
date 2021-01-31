@@ -10,8 +10,9 @@ function statement(invoices, plays) {
   function renderPlainText(invoices, plays) {
     let result = `청구 내역 ( 고객명 : ${invoices.customer}) \n`;
 
-    // 값 누적 로직을 별도 for문으로 분리
-    // for 문을 두번이나 돌리는데 좋은건가?
+    for (let perf of invoices.performances) {
+      result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} 석) \n`;
+    }
 
     result += `총액 : ${usd(totalAmount())} \n`;
     result += `적립 포인트 : ${totalVolumeCredits()} 점 \n`;
@@ -65,7 +66,6 @@ function statement(invoices, plays) {
       let result = 0;
       for (let perf of invoices.performances) {
         // 청구 내역을 출력한다
-        result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} 석) \n`;
         result += amountFor(perf);
       }
       return result;
