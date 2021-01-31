@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/rumor1993/Refactoring/issues"
   },
-  "homepage": "https://github.com/rumor1993/Refactoring#readme"
+  "homepage": "https://github.com/rumor1993/Refactoring#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10"
+  }
 }

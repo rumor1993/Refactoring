@@ -1,7 +1,7 @@
 const playsData = require("../data/plays.json");
 const invoicesData = require("../data/invoices.json");
 
-const result = statement(invoicesData, playsData);
+const result = statement(invoicesData[0], playsData);
 console.log(result);
 
 function statement(invoices, plays) {

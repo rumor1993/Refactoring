@@ -1,4 +1,4 @@
-export default function createStatementData(invoices, plays) {
+module.exports = function createStatementData(invoices, plays) {
   const statementData = {};
   statementData.customer = invoices.customer;
   statementData.performances = invoices.performances.map(enrichPerfromance);
@@ -52,4 +52,4 @@ export default function createStatementData(invoices, plays) {
   function totalVolumeCredits(data) {
     return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
   }
-}
+};
